@@ -1,0 +1,265 @@
+/* Vice Cover Studio — editor chrome (dark neon theme). The cover itself is
+   painted by src/cover.js on canvas, so this file only styles the tool. */
+
+@font-face {
+  font-family: "Anton";
+  src: url("fonts/Anton-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --bg: #0d0618;
+  --panel: #17102b;
+  --panel-edge: #2c1e52;
+  --ink: #f4eefc;
+  --muted: #b9a8d9;
+  --pink: #ff2975;
+  --orange: #ff8a3d;
+  --yellow: #ffd319;
+  --cyan: #22e6ff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 500px at 80% -10%, rgba(255, 41, 117, 0.25), transparent 60%),
+    radial-gradient(900px 500px at 0% 0%, rgba(255, 138, 61, 0.18), transparent 55%),
+    var(--bg);
+  color: var(--ink);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--panel-edge);
+  background: rgba(13, 6, 24, 0.85);
+}
+
+.brand { display: flex; align-items: center; gap: 12px; margin-right: auto; }
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--yellow), var(--pink) 55%, #8c1eff);
+  color: #12041f;
+  font-family: "Anton", sans-serif;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-family: "Anton", sans-serif;
+  font-size: 24px;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.brand p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+
+.sizes { display: flex; gap: 6px; }
+
+.size-btn {
+  border: 1px solid var(--panel-edge);
+  background: var(--panel);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.size-btn.active {
+  border-color: var(--pink);
+  background: var(--pink);
+  color: #fff;
+  font-weight: 700;
+}
+
+.export-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 22px;
+  cursor: pointer;
+  font-family: "Anton", sans-serif;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  color: #12041f;
+  background: linear-gradient(90deg, var(--yellow), var(--orange), var(--pink));
+  box-shadow: 0 4px 24px rgba(255, 41, 117, 0.45);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 20px;
+  padding: 20px;
+  align-items: start;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-radius: 14px;
+  padding: 6px 18px 18px;
+}
+
+.panel section { border-top: 1px solid var(--panel-edge); padding: 12px 0; }
+.panel section:first-child { border-top: 0; }
+
+.panel h2 {
+  margin: 4px 0 10px;
+  font-family: "Anton", sans-serif;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  color: var(--yellow);
+}
+
+.upload {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  border: 2px dashed var(--pink);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  background: rgba(255, 41, 117, 0.08);
+}
+
+.ghost-btn {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 9px;
+  border: 1px solid var(--panel-edge);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.ghost-btn:hover { border-color: var(--cyan); }
+
+.hint { color: var(--muted); font-size: 12px; line-height: 1.5; }
+
+.tray {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.tray img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.tray img.selected { border-color: var(--yellow); }
+
+.layout-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+
+.layout-btn {
+  aspect-ratio: 1;
+  border: 1px solid var(--panel-edge);
+  border-radius: 8px;
+  background: #241a3f;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 11px;
+  padding: 4px 2px;
+}
+
+.layout-btn.active { border-color: var(--yellow); background: #3a2a63; }
+
+.slider-row, .field { display: block; font-size: 13px; margin: 10px 0; }
+
+.slider-row input[type="range"] { width: 100%; accent-color: var(--pink); }
+
+.field input[type="text"] {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--panel-edge);
+  background: #0d0618;
+  color: var(--ink);
+  font-family: "Anton", sans-serif;
+  font-size: 17px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.style-row { display: flex; gap: 6px; }
+
+.style-btn {
+  flex: 1;
+  padding: 9px 4px;
+  border: 1px solid var(--panel-edge);
+  border-radius: 8px;
+  background: #241a3f;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.style-btn.active { border-color: var(--pink); background: #3a2a63; font-weight: 700; }
+
+.check-row { display: block; font-size: 13px; margin: 8px 0; }
+.check-row input { accent-color: var(--pink); }
+
+.stage { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+
+.canvas-wrap {
+  position: relative;
+  max-width: min(100%, 720px);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--panel-edge);
+  background: #000;
+}
+
+.canvas-wrap canvas { display: block; width: 100%; height: auto; cursor: grab; }
+.canvas-wrap canvas:active { cursor: grabbing; }
+
+.empty-state {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: rgba(13, 6, 24, 0.72);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.6;
+  pointer-events: none;
+}
+
+.stage-hint { color: var(--muted); font-size: 13px; margin: 0; }
+
+/* Full-cover screenshot view (?shot=cover): shows the exported PNG itself. */
+.shot-view { position: fixed; inset: 0; background: #000; z-index: 50; }
+.shot-view img { display: block; width: 100vw; height: 100vh; object-fit: contain; }
+.shot-view p {
+  /* Kept in the DOM for verification, never painted on the cover shot. */
+  display: none;
+}
+
+body.shot-mode .topbar,
+body.shot-mode .layout { display: none; }
+body.shot-mode { background: #000; }
